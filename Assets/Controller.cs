@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
   private float rotacaoX = 0;
   private float rotacaoY = 0.0f;
 
-  public Rigidbody projectable;
+  public Rigidbody projectile;
   public float speedshooter = 100;
 
   void Start()
@@ -80,8 +80,9 @@ public class Controller : MonoBehaviour
     {
       Rigidbody hitPlayer;
 
-      hitPlayer = InstantLate(projectable, cameraFPS.transform.position, cameraFPS.transform.location) as Rigidbody;
-      hitPlayer.velocity = cameraFPS.transform.TransformDirection(Vector3.foward + speedshooter);
+      Vector3 postiro = new Vector3(cameraFPS.transform.position.x, cameraFPS.transform.position.y - 0.50f, cameraFPS.transform.position.z);
+      hitPlayer = Instantiate(projectile, postiro, cameraFPS.transform.rotation) as Rigidbody;
+      hitPlayer.velocity = cameraFPS.transform.TransformDirection(Vector3.forward * speedshooter);
     }
   }
 
